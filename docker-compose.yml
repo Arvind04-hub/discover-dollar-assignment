@@ -1,0 +1,34 @@
+services:
+  backend-app:
+    image: arvind046/backend:latest
+    container_name: backend-app
+    ports:
+      - "8080:8080"
+    networks:
+      - app-network
+
+  frontend-app:
+    image: arvind046/frontend:latest
+    container_name: frontend-app
+    ports:
+      - "80:80"
+    depends_on:
+      - backend-app
+    networks:
+      - app-network
+
+  mongo:
+    image: mongo
+    container_name: mongo-db
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    networks:
+      - app-network
+
+networks:
+  app-network:
+
+volumes:
+  mongo_data:
