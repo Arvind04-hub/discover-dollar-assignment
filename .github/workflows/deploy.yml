@@ -3,7 +3,7 @@ name: CI/CD Pipeline
 on:
   push:
     branches:
-      - main                # pipeline runs when you push to main branch
+      - main        
 
 jobs:
   deploy:
@@ -33,7 +33,7 @@ jobs:
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.EC2_HOST }}
-          username: ${{ secrets.EC2_USER }}    # 'ubuntu' in your case
+          username: ${{ secrets.EC2_USER }}   
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
             cd /home/ubuntu
